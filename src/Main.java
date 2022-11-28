@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-import Components.Keyboard.*;
+import Components.*;
 
 class Main  {
     public static void main (String[] args) {
@@ -12,9 +12,13 @@ class Main  {
 
         //3. Create components and put them in the frame.
         //...create emptyLabel...
-        JButton button = new JButton("test");
-        button.addActionListener(testListener());
-        frame.getContentPane().add(button, BorderLayout.CENTER);
+        DrawField drawField = new DrawField();
+        WordLine workLine = new WordLine();
+        Keyboard keyboard = new Keyboard();
+
+        frame.getContentPane().add(drawField.getInput(), BorderLayout.CENTER);
+        frame.getContentPane().add(workLine.getInput(), BorderLayout.CENTER);
+        frame.getContentPane().add(keyboard.getButton(), BorderLayout.CENTER);
 
         //4. Size the frame.
         frame.setPreferredSize(new Dimension(800, 600));
@@ -26,14 +30,14 @@ class Main  {
     }
 
     // imported form java.awt.event.*;  
-    public static ActionListener testListener(){
-        ActionListener listener = new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            System.out.println("Button clicked");
-                // JOptionPane.showMessageDialog(this, textBox.getText());
-            }
-        };
-        return listener;
-    }
+    // public static ActionListener testListener(){
+    //     ActionListener listener = new ActionListener(){
+    //         @Override
+    //         public void actionPerformed(ActionEvent e) {
+    //         System.out.println("Button clicked");
+    //             // JOptionPane.showMessageDialog(this, textBox.getText());
+    //         }
+    //     };
+    //     return listener;
+    // }
 }
