@@ -11,11 +11,11 @@ class Main {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     //3. Create components and put them in the frame.
-    //...create emptyLabel...
 
-    frame.getContentPane().add(DrawField.getInput(), BorderLayout.CENTER);
-    frame.getContentPane().add(WordLine.getInput(), BorderLayout.CENTER);
-    frame.getContentPane().add(Keyboard.getButton(), BorderLayout.CENTER);
+    frame.add(new DrawField(), BorderLayout.CENTER);
+    frame.add(new WordLine(), BorderLayout.CENTER);
+    frame.add(new Keyboard(), BorderLayout.CENTER);
+    // frame.add(new Dial(), BorderLayout.CENTER);
 
     //4. Size the frame.
     frame.setPreferredSize(new Dimension(800, 600));
@@ -25,15 +25,4 @@ class Main {
     //5. Show it.
     frame.setVisible(true);
   }
-  // imported form java.awt.event.*;
-  // public static ActionListener testListener(){
-  //     ActionListener listener = new ActionListener(){
-  //         @Override
-  //         public void actionPerformed(ActionEvent e) {
-  //         System.out.println("Button clicked");
-  //             // JOptionPane.showMessageDialog(this, textBox.getText());
-  //         }
-  //     };
-  //     return listener;
-  // }
 }
