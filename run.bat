@@ -1,2 +1,2 @@
 java -cp out Main
-cls
+@REM cls

@@ -3,7 +3,6 @@ import java.awt.*;
 import javax.swing.*;
 
 class Main {
-
   public static void main(String[] args) {
     JFrame frame = new JFrame("FrameDemo");
 
@@ -12,9 +11,9 @@ class Main {
 
     //3. Create components and put them in the frame.
 
-    frame.add(new DrawField(), BorderLayout.CENTER);
-    frame.add(new WordLine(), BorderLayout.CENTER);
-    frame.add(new Keyboard(), BorderLayout.CENTER);
+    frame.add(new DrawField());
+    frame.add(new WordLine());
+    frame.add(new Keyboard());
     // frame.add(new Dial(), BorderLayout.CENTER);
 
     //4. Size the frame.
