@@ -5,9 +5,14 @@ import javax.swing.*;
 
 public class DrawField extends JPanel {
 
-  public void paint(Graphics g) {
+  public void printDrawing(int failCounter) {
+    Graphics g = getGraphics();
     ((Graphics2D) g).setStroke(new BasicStroke(5));
     g.setColor(Color.BLACK);
+
+    for (int i = 0; i < failCounter; i++) {
+      workers[i].draw(300, g);
+    }
   }
 
   Worker[] workers = new Worker[] {

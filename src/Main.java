@@ -1,11 +1,13 @@
 import Components.*;
+import Utils.Validator;
 import java.awt.*;
 import javax.swing.*;
 
 class Main {
 
   static JFrame frame = new JFrame("Hangman");
-  static String word = "";
+  static String wordToPrint = "_____";
+  static String answer = "labas";
   static int failCounter = 0;
 
   public static void main(String[] args) {
@@ -17,12 +19,21 @@ class Main {
     constrains.fill = GridBagConstraints.BOTH;
 
     DrawField drawfield = new DrawField();
-    WordLine wordLine = new WordLine(word);
+    WordLine wordLine = new WordLine(wordToPrint);
     Keyboard keyboard = new Keyboard(
       new KeyboardActions() {
         public void onButtonClickHandler(char letter) {
-          word += letter;
-          wordLine.update(word);
+          // wordToPrint += letter;
+          System.out.println(wordToPrint);
+          if (Validator.validLetter(letter, answer)) {
+            wordToPrint = Validator.getWordToPrint(letter, wordToPrint, answer);
+            System.out.println(wordToPrint);
+            wordLine.update(wordToPrint);
+          } else {
+            failCounter++;
+            System.out.println(failCounter);
+            drawfield.printDrawing(failCounter);
+          }
         }
       }
     );

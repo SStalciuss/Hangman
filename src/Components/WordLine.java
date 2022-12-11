@@ -12,6 +12,7 @@ public class WordLine extends JPanel {
   public void update(String word) {
     this.removeAll();
     printWord(word);
+    this.revalidate();
   }
 
   private void printWord(String word) {
@@ -20,9 +21,10 @@ public class WordLine extends JPanel {
     this.setAlignmentX(Component.CENTER_ALIGNMENT);
     // this.setLayout(new GridLayout(1,0));
 
-    JLabel letter = new JLabel(word);
-    letter.setFont(new Font("Sans Serif", Font.BOLD, 24));
-
-    this.add(letter);
+    for (char let : word.toCharArray()) {
+      JLabel letter = new JLabel(let + " ");
+      letter.setFont(new Font("Sans Serif", Font.BOLD, 32));
+      this.add(letter);
+    }
   }
 }
