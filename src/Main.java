@@ -3,25 +3,40 @@ import java.awt.*;
 import javax.swing.*;
 
 class Main {
+
+  static JFrame frame = new JFrame("Hangman");
+  static String word = "";
+  static int failCounter = 0;
+
   public static void main(String[] args) {
-    JFrame frame = new JFrame("FrameDemo");
     frame.setLayout(new GridBagLayout());
-    GridBagConstraints c = new GridBagConstraints();
+    GridBagConstraints constrains = new GridBagConstraints();
 
-    c.gridwidth = c.gridheight = 1;
-    c.anchor = GridBagConstraints.NORTHWEST;
-    c.fill = GridBagConstraints.BOTH;
-    
-    c.gridx = c.gridy = 0;
-    c.weightx = c.weighty = 60;
-    frame.getContentPane().add(new DrawField(),c);
-    c.gridy = 1;
-    c.weightx = c.weighty = 10;
-    frame.getContentPane().add(new WordLine(),c);
-    c.gridy = 2;
-    c.weightx = c.weighty = 30;
-    frame.getContentPane().add(new Keyboard(),c);
+    constrains.gridwidth = constrains.gridheight = 1;
+    constrains.anchor = GridBagConstraints.NORTHWEST;
+    constrains.fill = GridBagConstraints.BOTH;
 
+    DrawField drawfield = new DrawField();
+    WordLine wordLine = new WordLine(word);
+    Keyboard keyboard = new Keyboard(
+      new KeyboardActions() {
+        public void onButtonClickHandler(char letter) {
+          word += letter;
+          wordLine.update(word);
+        }
+      }
+    );
+    constrains.gridx = constrains.gridy = 0;
+    constrains.weightx = constrains.weighty = 60;
+    frame.add(drawfield, constrains);
+
+    constrains.gridy = 1;
+    constrains.weightx = constrains.weighty = 10;
+    frame.add(wordLine, constrains);
+
+    constrains.gridy = 2;
+    constrains.weightx = constrains.weighty = 30;
+    frame.add(keyboard, constrains);
 
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setPreferredSize(new Dimension(1000, 800));

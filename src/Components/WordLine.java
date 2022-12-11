@@ -1,20 +1,28 @@
 package Components;
 
+import java.awt.*;
 import javax.swing.*;
 
-import java.awt.*;
+public class WordLine extends JPanel {
 
-public class WordLine extends JPanel  {
-    
-    public WordLine(){
-        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        this.setBorder(BorderFactory.createLineBorder(Color.RED,3));
-        this.setAlignmentX(Component.CENTER_ALIGNMENT);
-        // this.setLayout(new GridLayout(1,0));
+  public WordLine(String word) {
+    printWord(word);
+  }
 
-        JLabel letter = new JLabel("test");
-        letter.setFont(new Font("Sans Serif", Font.BOLD, 24));
+  public void update(String word) {
+    this.removeAll();
+    printWord(word);
+  }
 
-        this.add(letter);
-    }
+  private void printWord(String word) {
+    this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+    this.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+    this.setAlignmentX(Component.CENTER_ALIGNMENT);
+    // this.setLayout(new GridLayout(1,0));
+
+    JLabel letter = new JLabel(word);
+    letter.setFont(new Font("Sans Serif", Font.BOLD, 24));
+
+    this.add(letter);
+  }
 }
