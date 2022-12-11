@@ -5,20 +5,26 @@ import javax.swing.*;
 class Main {
   public static void main(String[] args) {
     JFrame frame = new JFrame("FrameDemo");
+    frame.setLayout(new GridBagLayout());
+    GridBagConstraints c = new GridBagConstraints();
 
-    //2. Optional: What happens when the frame closes?
+    c.gridwidth = c.gridheight = 1;
+    c.anchor = GridBagConstraints.NORTHWEST;
+    c.fill = GridBagConstraints.BOTH;
+    
+    c.gridx = c.gridy = 0;
+    c.weightx = c.weighty = 60;
+    frame.getContentPane().add(new DrawField(),c);
+    c.gridy = 1;
+    c.weightx = c.weighty = 10;
+    frame.getContentPane().add(new WordLine(),c);
+    c.gridy = 2;
+    c.weightx = c.weighty = 30;
+    frame.getContentPane().add(new Keyboard(),c);
+
+
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-    //3. Create components and put them in the frame.
-
-    frame.add(new DrawField());
-    frame.add(new WordLine());
-    frame.add(new Keyboard());
-    // frame.add(new Dial(), BorderLayout.CENTER);
-
-    //4. Size the frame.
-    frame.setPreferredSize(new Dimension(800, 600));
-    frame.setLayout(new GridLayout(3, 0));
+    frame.setPreferredSize(new Dimension(1000, 800));
     frame.pack();
 
     //5. Show it.
