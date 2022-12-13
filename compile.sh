@@ -1,4 +1,4 @@
-set CLASSPATH=out
+export CLASSPATH=out
 javac -d out src/Interfaces/*.java
 javac -d out src/Components/*.java
 javac -d out src/Utils/*.java
