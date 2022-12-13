@@ -13,9 +13,11 @@ public class MySQLHandler {
   static PreparedStatement statement;
   static ResultSet res;
 
-  public static void main(String args[]) {
+  public static void conection() {
     System.out.println("Connecting database...");
     try {
+      Class.forName("com.mysql.jdbc.Driver.");
+      System.out.println("Trying");
       con =
         DriverManager.getConnection(
           "sql7.freesqldatabase.com",

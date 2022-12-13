@@ -1,4 +1,5 @@
 import Components.*;
+import Utils.MySQLHandler;
 import Utils.Validator;
 import java.awt.*;
 import javax.swing.*;
@@ -11,6 +12,7 @@ class Main {
   static int failCounter = 0;
 
   public static void main(String[] args) {
+    MySQLHandler.conection();
     frame.setLayout(new GridBagLayout());
     GridBagConstraints constrains = new GridBagConstraints();
 
