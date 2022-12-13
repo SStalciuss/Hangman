@@ -26,10 +26,16 @@ public class Keyboard extends JPanel {
         char let = buttonsList[i][j];
         buttons[i][j] = new JButton("" + let);
         buttons[i][j].setFont(new Font("Sans Serif", Font.BOLD, 24));
+        buttons[i][j].setMargin(new Insets(0, 0, 0, 0));
         buttons[i][j].addActionListener(
             new ActionListener() {
               public void actionPerformed(ActionEvent e) {
                 actions.onButtonClickHandler(let);
+                Object obj = e.getSource();
+                if (obj instanceof JButton) {
+                  JButton button = (JButton) obj;
+                  button.setEnabled(false);
+                }
               }
             }
           );

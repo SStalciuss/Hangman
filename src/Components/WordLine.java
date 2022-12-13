@@ -6,6 +6,8 @@ import javax.swing.*;
 public class WordLine extends JPanel {
 
   public WordLine(String word) {
+    this.setLayout(new GridBagLayout());
+    this.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
     printWord(word);
   }
 
@@ -16,14 +18,9 @@ public class WordLine extends JPanel {
   }
 
   private void printWord(String word) {
-    this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-    this.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-    this.setAlignmentX(Component.CENTER_ALIGNMENT);
-    // this.setLayout(new GridLayout(1,0));
-
     for (char let : word.toCharArray()) {
       JLabel letter = new JLabel(let + " ");
-      letter.setFont(new Font("Sans Serif", Font.BOLD, 32));
+      letter.setFont(new Font("Sans Serif", Font.BOLD, 40));
       this.add(letter);
     }
   }

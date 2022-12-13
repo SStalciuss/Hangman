@@ -14,8 +14,6 @@ class Main {
     frame.setLayout(new GridBagLayout());
     GridBagConstraints constrains = new GridBagConstraints();
 
-    constrains.gridwidth = constrains.gridheight = 1;
-    constrains.anchor = GridBagConstraints.NORTHWEST;
     constrains.fill = GridBagConstraints.BOTH;
 
     DrawField drawfield = new DrawField();
@@ -23,21 +21,21 @@ class Main {
     Keyboard keyboard = new Keyboard(
       new KeyboardActions() {
         public void onButtonClickHandler(char letter) {
-          // wordToPrint += letter;
-          System.out.println(wordToPrint);
           if (Validator.validLetter(letter, answer)) {
             wordToPrint = Validator.getWordToPrint(letter, wordToPrint, answer);
-            System.out.println(wordToPrint);
             wordLine.update(wordToPrint);
           } else {
             failCounter++;
-            System.out.println(failCounter);
             drawfield.printDrawing(failCounter);
+          }
+
+          if (failCounter >= 10) {
+            frame.setEnabled(false);
           }
         }
       }
     );
-    constrains.gridx = constrains.gridy = 0;
+    constrains.gridy = 0;
     constrains.weightx = constrains.weighty = 60;
     frame.add(drawfield, constrains);
 

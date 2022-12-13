@@ -20,4 +20,8 @@ public class Validator {
     }
     return new String(currWordLetters);
   }
+
+  public static boolean playerWon(String currWord) {
+    return !currWord.contains("_");
+  }
 }
