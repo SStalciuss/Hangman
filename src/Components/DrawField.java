@@ -1,5 +1,6 @@
 package Components;
 
+import Interfaces.Worker;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

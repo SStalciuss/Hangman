@@ -1,4 +1,4 @@
-package Components;
+package Interfaces;
 
 import java.awt.*;
 
