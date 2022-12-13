@@ -12,6 +12,11 @@ public class MySQLHandler {
   static PreparedStatement statement;
   static ResultSet res;
 
+  private static String url =
+    "jdbc:mysql://sql7.freemysqlhosting.net/sql7584318";
+  private static String name = "sql7584318";
+  private static String password = "vfjFJuDrkr";
+
   public MySQLHandler() {
     System.out.println("test");
   }
@@ -21,12 +26,7 @@ public class MySQLHandler {
     System.out.println("Connecting database...");
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
-      con =
-        DriverManager.getConnection(
-          "jdbc:mysql://sql7.freemysqlhosting.net/sql7584318",
-          "sql7584318",
-          "vfjFJuDrkr"
-        );
+      con = DriverManager.getConnection(url, name, password);
       System.out.println("Database connected!");
     } catch (Exception e) {
       throw new IllegalStateException("Cannot connect the database!", e);
