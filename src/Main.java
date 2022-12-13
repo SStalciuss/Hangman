@@ -10,13 +10,13 @@ class Main {
   static JFrame login = new JFrame("Login");
   static JFrame register = new JFrame("Register");
   static JFrame frame = new JFrame("Hangman");
-  static String wordToPrint = "_____";
-  static String answer = "labas";
+  static String wordToPrint = "";
+  static String answer = "";
   static int failCounter = 0;
 
   public static void main(String[] args) {
     MySQLHandler.connect();
-    // Reader.read();
+    getWord();
 
     LoginField loginfield = new LoginField();
     login.add(loginfield);
@@ -81,5 +81,18 @@ class Main {
 
     //5. Show it.
     frame.setVisible(true);
+  }
+
+  private static int getRandomNumber(int min, int max) {
+    return (int) ((Math.random() * (max - min)) + min);
+  }
+
+  private static void getWord() {
+    int totalRows = MySQLHandler.getRowsCount();
+    int wordId = getRandomNumber(1, totalRows);
+    answer = MySQLHandler.getWord(wordId);
+    wordToPrint = "_".repeat(answer.length());
+    System.out.println("answer " + answer);
+    System.out.println("wordToPrint " + wordToPrint);
   }
 }

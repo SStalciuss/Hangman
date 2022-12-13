@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Vector;
 
 public class MySQLHandler {
 
@@ -16,10 +15,6 @@ public class MySQLHandler {
     "jdbc:mysql://sql7.freemysqlhosting.net/sql7584318";
   private static String name = "sql7584318";
   private static String password = "vfjFJuDrkr";
-
-  public MySQLHandler() {
-    System.out.println("test");
-  }
 
   public static void connect() {
     if (con != null) return;
@@ -65,40 +60,24 @@ public class MySQLHandler {
     }
   }
 
-  public static Vector<String> getAllNames() {
+  public static int getRowsCount() {
     try {
-      statement = con.prepareStatement("SELECT name FROM Users");
+      statement = con.prepareStatement("SELECT COUNT(*) FROM Words");
       res = statement.executeQuery();
-      Vector<String> temp = new Vector<String>();
-
-      while (res.next()) temp.add(res.getString("name"));
-      return temp;
+      res.next();
+      return res.getInt(1);
     } catch (Exception e) {
       throw new IllegalStateException("Cant add user!", e);
     }
   }
 
-  public static Vector<String> getAllScores() {
+  public static String getWord(int id) {
     try {
-      statement = con.prepareStatement("SELECT score FROM scores");
+      statement = con.prepareStatement("SELECT word FROM Words WHERE id = (?)");
+      statement.setInt(1, id);
       res = statement.executeQuery();
-      Vector<String> temp = new Vector<String>();
-
-      while (res.next()) temp.add(res.getString("score"));
-      return temp;
-    } catch (Exception e) {
-      throw new IllegalStateException("Cant add user!", e);
-    }
-  }
-
-  public static Vector<String> getAllWords() {
-    try {
-      statement = con.prepareStatement("SELECT word FROM Words");
-      res = statement.executeQuery();
-      Vector<String> temp = new Vector<String>();
-
-      while (res.next()) temp.add(res.getString("word"));
-      return temp;
+      res.next();
+      return res.getString(1);
     } catch (Exception e) {
       throw new IllegalStateException("Cant add user!", e);
     }
