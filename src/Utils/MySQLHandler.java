@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Vector;
 
 public class MySQLHandler {
@@ -46,42 +45,62 @@ public class MySQLHandler {
     }
   }
 
-  public static void addWord(String word) throws SQLException {
-    statement = con.prepareStatement("INSERT INTO Words (word) VALUES(?)");
-    statement.setString(1, word);
-    statement.execute();
+  public static void addWord(String word) {
+    try {
+      statement = con.prepareStatement("INSERT INTO Words (word) VALUES(?)");
+      statement.setString(1, word);
+      statement.execute();
+    } catch (Exception e) {
+      throw new IllegalStateException("Cant add user!", e);
+    }
   }
 
-  public static void addScore(String score) throws SQLException {
-    statement = con.prepareStatement("INSERT INTO Scores (score) VALUES(?)");
-    statement.setString(1, score);
-    statement.execute();
+  public static void addScore(String score) {
+    try {
+      statement = con.prepareStatement("INSERT INTO Scores (score) VALUES(?)");
+      statement.setString(1, score);
+      statement.execute();
+    } catch (Exception e) {
+      throw new IllegalStateException("Cant add user!", e);
+    }
   }
 
-  public static Vector<String> getAllNames() throws SQLException {
-    statement = con.prepareStatement("SELECT name FROM Users");
-    res = statement.executeQuery();
-    Vector<String> temp = new Vector<String>();
+  public static Vector<String> getAllNames() {
+    try {
+      statement = con.prepareStatement("SELECT name FROM Users");
+      res = statement.executeQuery();
+      Vector<String> temp = new Vector<String>();
 
-    while (res.next()) temp.add(res.getString("name"));
-    return temp;
+      while (res.next()) temp.add(res.getString("name"));
+      return temp;
+    } catch (Exception e) {
+      throw new IllegalStateException("Cant add user!", e);
+    }
   }
 
-  public static Vector<String> getAllScores() throws SQLException {
-    statement = con.prepareStatement("SELECT score FROM scores");
-    res = statement.executeQuery();
-    Vector<String> temp = new Vector<String>();
+  public static Vector<String> getAllScores() {
+    try {
+      statement = con.prepareStatement("SELECT score FROM scores");
+      res = statement.executeQuery();
+      Vector<String> temp = new Vector<String>();
 
-    while (res.next()) temp.add(res.getString("score"));
-    return temp;
+      while (res.next()) temp.add(res.getString("score"));
+      return temp;
+    } catch (Exception e) {
+      throw new IllegalStateException("Cant add user!", e);
+    }
   }
 
-  public static Vector<String> getAllWords() throws SQLException {
-    statement = con.prepareStatement("SELECT word FROM Words");
-    res = statement.executeQuery();
-    Vector<String> temp = new Vector<String>();
+  public static Vector<String> getAllWords() {
+    try {
+      statement = con.prepareStatement("SELECT word FROM Words");
+      res = statement.executeQuery();
+      Vector<String> temp = new Vector<String>();
 
-    while (res.next()) temp.add(res.getString("word"));
-    return temp;
+      while (res.next()) temp.add(res.getString("word"));
+      return temp;
+    } catch (Exception e) {
+      throw new IllegalStateException("Cant add user!", e);
+    }
   }
 }

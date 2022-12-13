@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Reader {
 
   public static void main(String[] args) {
+    MySQLHandler.connect();
     try {
       File file = new File("words.txt");
       Scanner input = new Scanner(file);
@@ -14,6 +15,7 @@ public class Reader {
       while (input.hasNext()) {
         String word = input.next();
         System.out.println(word);
+        MySQLHandler.addWord(word);
         count = count + 1;
       }
       input.close();
