@@ -16,14 +16,14 @@ class Main {
   public static void main(String[] args) {
     MySQLHandler.connect();
 
-    LoginField loginfield = new LoginField(new LoginActions());
+    LoginField loginfield = new LoginField();
     login.add(loginfield);
     login.setPreferredSize(new Dimension(300, 200));
     login.pack();
     login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     RegisterField registerfield = new RegisterField(
-      new LoginActions() {
+      new ButtonActions<String>() {
         public void onButtonClickHandler(String name) {
           if (name == "Have an account?") {
             login.setVisible(true);
@@ -45,8 +45,8 @@ class Main {
     DrawField drawfield = new DrawField();
     WordLine wordLine = new WordLine(wordToPrint);
     Keyboard keyboard = new Keyboard(
-      new KeyboardActions() {
-        public void onButtonClickHandler(char letter) {
+      new ButtonActions<Character>() {
+        public void onButtonClickHandler(Character letter) {
           if (Validator.validLetter(letter, answer)) {
             wordToPrint = Validator.getWordToPrint(letter, wordToPrint, answer);
             wordLine.update(wordToPrint);

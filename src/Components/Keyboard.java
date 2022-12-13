@@ -13,13 +13,13 @@ public class Keyboard extends JPanel {
   };
   private JButton[][] buttons;
 
-  public Keyboard(KeyboardActions actions) {
+  public Keyboard(ButtonActions<Character> actions) {
     this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
     createButtons(actions);
     addButtonsToPanel();
   }
 
-  private void createButtons(KeyboardActions actions) {
+  private void createButtons(ButtonActions<Character> actions) {
     buttons = new JButton[buttonsList.length][20];
     for (int i = 0; i < buttonsList.length; i++) {
       for (int j = 0; j < buttonsList[i].length; j++) {
