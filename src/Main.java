@@ -12,10 +12,10 @@ class Main {
   static int failCounter = 0;
 
   public static void main(String[] args) {
-    MySQLHandler.conection();
+    MySQLHandler.connect();
+    MySQLHandler.addUser("test", "test");
     frame.setLayout(new GridBagLayout());
     GridBagConstraints constrains = new GridBagConstraints();
-
     constrains.fill = GridBagConstraints.BOTH;
 
     DrawField drawfield = new DrawField();

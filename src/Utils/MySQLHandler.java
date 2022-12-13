@@ -9,18 +9,22 @@ import java.util.Vector;
 
 public class MySQLHandler {
 
-  static Connection con;
+  static Connection con = null;
   static PreparedStatement statement;
   static ResultSet res;
 
-  public static void conection() {
+  public MySQLHandler() {
+    System.out.println("test");
+  }
+
+  public static void connect() {
+    if (con != null) return;
     System.out.println("Connecting database...");
     try {
-      Class.forName("com.mysql.jdbc.Driver.");
-      System.out.println("Trying");
+      Class.forName("com.mysql.cj.jdbc.Driver");
       con =
         DriverManager.getConnection(
-          "sql7.freesqldatabase.com",
+          "jdbc:mysql://sql7.freemysqlhosting.net/sql7584318",
           "sql7584318",
           "vfjFJuDrkr"
         );
@@ -30,12 +34,16 @@ public class MySQLHandler {
     }
   }
 
-  public static void addUser(String name, String password) throws SQLException {
-    statement =
-      con.prepareStatement("INSERT INTO Users (name, password) VALUES(?,?)");
-    statement.setString(1, name);
-    statement.setString(2, password);
-    statement.execute();
+  public static void addUser(String name, String password) {
+    try {
+      statement =
+        con.prepareStatement("INSERT INTO Users (name, password) VALUES(?,?)");
+      statement.setString(1, name);
+      statement.setString(2, password);
+      statement.execute();
+    } catch (Exception e) {
+      throw new IllegalStateException("Cant add user!", e);
+    }
   }
 
   public static void addWord(String word) throws SQLException {
