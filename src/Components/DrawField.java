@@ -60,45 +60,45 @@ public class DrawField extends JPanel {
         DrawFunctions.drawStick(size, g);
       }
     },
-    // new Worker() {
-    //   public void draw(int size, int x, int y, Graphics g) {
-    //     DrawFunctions.drawHorizontal(size, x, y, g);
-    //   }
-    // },
-    // new Worker() {
-    //   public void draw(int size, int x, int y, Graphics g) {
-    //     DrawFunctions.drawVertical(size, x, y, g);
-    //   }
-    // },
-    // new Worker() {
-    //   public void draw(int size, int x, int y, Graphics g) {
-    //     DrawFunctions.drawHead(size, x, y, g);
-    //   }
-    // },
-    // new Worker() {
-    //   public void draw(int size, int x, int y, Graphics g) {
-    //     DrawFunctions.drawBody(size, x, y, g);
-    //   }
-    // },
-    // new Worker() {
-    //   public void draw(int size, int x, int y, Graphics g) {
-    //     DrawFunctions.drawRightHand(size, x, y, g);
-    //   }
-    // },
-    // new Worker() {
-    //   public void draw(int size, int x, int y, Graphics g) {
-    //     DrawFunctions.drawLeftHand(size, x, y, g);
-    //   }
-    // },
-    // new Worker() {
-    //   public void draw(int size, int x, int y, Graphics g) {
-    //     DrawFunctions.drawRightLeg(size, x, y, g);
-    //   }
-    // },
-    // new Worker() {
-    //   public void draw(int size, int x, int y, Graphics g) {
-    //     DrawFunctions.drawLeftLeg(size, x, y, g);
-    //   }
-    // },
+    new Worker() {
+      public void draw(int size, Graphics g) {
+        DrawFunctions.drawHorizontal(size, g);
+      }
+    },
+    new Worker() {
+      public void draw(int size, Graphics g) {
+        DrawFunctions.drawVertical(size, g);
+      }
+    },
+    new Worker() {
+      public void draw(int size, Graphics g) {
+        DrawFunctions.drawHead(size, g);
+      }
+    },
+    new Worker() {
+      public void draw(int size, Graphics g) {
+        DrawFunctions.drawBody(size, g);
+      }
+    },
+    new Worker() {
+      public void draw(int size, Graphics g) {
+        DrawFunctions.drawRightHand(size, g);
+      }
+    },
+    new Worker() {
+      public void draw(int size, Graphics g) {
+        DrawFunctions.drawLeftHand(size, g);
+      }
+    },
+    new Worker() {
+      public void draw(int size, Graphics g) {
+        DrawFunctions.drawRightLeg(size, g);
+      }
+    },
+    new Worker() {
+      public void draw(int size, Graphics g) {
+        DrawFunctions.drawLeftLeg(size, g);
+      }
+    },
   };
 }
