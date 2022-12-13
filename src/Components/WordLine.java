@@ -7,14 +7,13 @@ public class WordLine extends JPanel {
 
   public WordLine(String word) {
     this.setLayout(new GridBagLayout());
-    this.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
     printWord(word);
   }
 
   public void update(String word) {
-    this.removeAll();
+    // this.removeAll();
     printWord(word);
-    this.revalidate();
+    this.updateUI();
   }
 
   private void printWord(String word) {

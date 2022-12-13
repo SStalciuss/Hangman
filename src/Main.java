@@ -40,10 +40,6 @@ class Main {
     register.pack();
     register.setVisible(true);
 
-    frame.setLayout(new GridBagLayout());
-    GridBagConstraints constrains = new GridBagConstraints();
-    constrains.fill = GridBagConstraints.BOTH;
-
     DrawField drawfield = new DrawField();
     WordLine wordLine = new WordLine(wordToPrint);
     Keyboard keyboard = new Keyboard(
@@ -63,17 +59,21 @@ class Main {
         }
       }
     );
-    constrains.gridy = 0;
-    constrains.weightx = constrains.weighty = 60;
-    frame.add(drawfield, constrains);
+    frame.setLayout(new GridBagLayout());
+    GridBagConstraints constraints = new GridBagConstraints();
+    constraints.fill = GridBagConstraints.BOTH;
 
-    constrains.gridy = 1;
-    constrains.weightx = constrains.weighty = 10;
-    frame.add(wordLine, constrains);
+    constraints.gridy = 0;
+    constraints.weightx = constraints.weighty = 0.6;
+    frame.add(drawfield, constraints);
 
-    constrains.gridy = 2;
-    constrains.weightx = constrains.weighty = 30;
-    frame.add(keyboard, constrains);
+    constraints.gridy = 1;
+    constraints.weightx = constraints.weighty = 0.1;
+    frame.add(wordLine, constraints);
+
+    constraints.gridy = 2;
+    constraints.weightx = constraints.weighty = 0.3;
+    frame.add(keyboard, constraints);
 
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setPreferredSize(new Dimension(1000, 800));

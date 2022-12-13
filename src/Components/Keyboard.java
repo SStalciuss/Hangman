@@ -49,7 +49,6 @@ public class Keyboard extends JPanel {
     for (JButton[] buttonsRow : buttons) {
       JPanel row = new JPanel();
       row.setLayout(new GridLayout(1, 0));
-      row.setBorder(BorderFactory.createLineBorder(Color.GREEN));
       for (JButton button : buttonsRow) {
         if (button != null) {
           row.add(button);
