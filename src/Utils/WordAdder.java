@@ -2,7 +2,6 @@ package Utils;
 
 import java.io.File; // Import the File class
 import java.io.FileNotFoundException; // Import this class to handle errors
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public class WordAdder {
@@ -23,8 +22,6 @@ public class WordAdder {
     } catch (FileNotFoundException e) {
       System.out.println("An error occurred.");
       e.printStackTrace();
-    } catch (SQLException e) {
-      System.out.println("An error occurred.");
     }
   }
 }

@@ -1,9 +1,5 @@
-@REM java -cp out Main
-set CLASSPATH=out;C:\Program Files (x86)\MySQL\Connector J 8.0\mysql-connector-j-8.0.31.jar        
+set CLASSPATH=out;libs\mysql-connector-j-8.0.31.jar
 java Main
-
-@REM cls
-
 
 @REM //WINDOWS
 @REM $ set CLASSPATH=C:\dependency\framework.jar;C:\location\*.jar
