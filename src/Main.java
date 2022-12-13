@@ -16,6 +16,7 @@ class Main {
 
   public static void main(String[] args) {
     MySQLHandler.connect();
+    // Reader.read();
 
     LoginField loginfield = new LoginField();
     login.add(loginfield);

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Reader {
 
-  public static void main(String[] args) {
+  public static void read() {
     MySQLHandler.connect();
     try {
       File file = new File("words.txt");
