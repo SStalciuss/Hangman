@@ -6,6 +6,8 @@ import javax.swing.*;
 
 class Main {
 
+  static JFrame login = new JFrame("Login");
+  static JFrame register = new JFrame("Register");
   static JFrame frame = new JFrame("Hangman");
   static String wordToPrint = "_____";
   static String answer = "labas";
@@ -13,6 +15,27 @@ class Main {
 
   public static void main(String[] args) {
     MySQLHandler.conection();
+    
+    LoginField loginfield = new LoginField(new LoginActions());
+    login.add(loginfield);
+    login.setPreferredSize(new Dimension(300, 200));
+    login.pack();
+    login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+    RegisterField registerfield = new RegisterField(new LoginActions(){
+      public void onButtonClickHandler(String name) {
+        if (name == "Have an account?") {
+          login.setVisible(true);
+          register.setVisible(false);
+        }
+      }
+    });
+    register.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    register.add(registerfield);
+    register.setPreferredSize(new Dimension(300, 200));
+    register.pack();
+    register.setVisible(true);
+    
     frame.setLayout(new GridBagLayout());
     GridBagConstraints constrains = new GridBagConstraints();
 
