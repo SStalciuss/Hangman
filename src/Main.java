@@ -58,8 +58,11 @@ class Main {
           }
 
           if (failCounter >= 10) {
+            GameEnd.create(failCounter);
             frame.setEnabled(false);
-          }
+          } else if (Validator.playerWon(wordToPrint)) GameEnd.create(
+            failCounter
+          );
         }
       }
     );
