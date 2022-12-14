@@ -3,6 +3,7 @@ import Interfaces.ButtonActions;
 import Utils.MySQLHandler;
 import Utils.Validator;
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 class Main {
@@ -58,10 +59,11 @@ class Main {
           }
 
           if (failCounter >= 10) {
-            GameEnd.create(failCounter);
+            GameEnd.create(failCounter, getResetActions());
             frame.setEnabled(false);
           } else if (Validator.playerWon(wordToPrint)) GameEnd.create(
-            failCounter
+            failCounter,
+            getResetActions()
           );
         }
       }
@@ -88,6 +90,17 @@ class Main {
 
   private static int getRandomNumber(int min, int max) {
     return (int) ((Math.random() * (max - min)) + min);
+  }
+
+  private static ButtonActions<ActionEvent> getResetActions() {
+    return new ButtonActions<ActionEvent>() {
+      @Override
+      public void onButtonClickHandler(ActionEvent param) {
+        frame.getContentPane().removeAll();
+        frame.repaint();
+        main(new String[1]);
+      }
+    };
   }
 
   private static void getWord() {
