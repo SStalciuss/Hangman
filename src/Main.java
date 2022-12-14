@@ -102,6 +102,8 @@ class Main {
       public void onButtonClickHandler(ActionEvent param) {
         frame.getContentPane().removeAll();
         frame.repaint();
+        frame.setEnabled(true);
+        failCounter = 0;
         main(new String[1]);
       }
     };
