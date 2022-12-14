@@ -3,6 +3,7 @@ import Interfaces.ButtonActions;
 import Utils.MySQLHandler;
 import Utils.Validator;
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 class Main {
@@ -17,7 +18,7 @@ class Main {
   public static void main(String[] args) {
     MySQLHandler.connect();
     getWord();
-
+    /* 
     LoginField loginfield = new LoginField();
     login.add(loginfield);
     login.setPreferredSize(new Dimension(300, 200));
@@ -39,6 +40,10 @@ class Main {
     register.setPreferredSize(new Dimension(300, 200));
     register.pack();
     register.setVisible(true);
+*/
+    frame.setLayout(new GridBagLayout());
+    GridBagConstraints constrains = new GridBagConstraints();
+    constrains.fill = GridBagConstraints.BOTH;
 
     DrawField drawfield = new DrawField();
     WordLine wordLine = new WordLine(wordToPrint);
@@ -54,8 +59,12 @@ class Main {
           }
 
           if (failCounter >= 10) {
+            GameEnd.create(failCounter, getResetActions());
             frame.setEnabled(false);
-          }
+          } else if (Validator.playerWon(wordToPrint)) GameEnd.create(
+            failCounter,
+            getResetActions()
+          );
         }
       }
     );
@@ -85,6 +94,17 @@ class Main {
 
   private static int getRandomNumber(int min, int max) {
     return (int) ((Math.random() * (max - min)) + min);
+  }
+
+  private static ButtonActions<ActionEvent> getResetActions() {
+    return new ButtonActions<ActionEvent>() {
+      @Override
+      public void onButtonClickHandler(ActionEvent param) {
+        frame.getContentPane().removeAll();
+        frame.repaint();
+        main(new String[1]);
+      }
+    };
   }
 
   private static void getWord() {

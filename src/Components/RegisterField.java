@@ -1,6 +1,7 @@
 package Components;
 
 import Interfaces.ButtonActions;
+import Utils.MySQLHandler;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -26,7 +27,10 @@ public class RegisterField extends JPanel {
     register.addActionListener(
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-          actions.onButtonClickHandler("Register");
+          String usernameString = username.getText();
+          String passwordString = password.getText();
+          MySQLHandler.addUser(usernameString, passwordString);
+          //RegisterField.setVisible(false);
         }
       }
     );
