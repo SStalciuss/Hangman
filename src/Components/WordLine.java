@@ -11,7 +11,7 @@ public class WordLine extends JPanel {
   }
 
   public void update(String word) {
-    // this.removeAll();
+    this.removeAll();
     printWord(word);
     this.updateUI();
   }
