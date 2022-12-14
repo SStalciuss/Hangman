@@ -18,7 +18,7 @@ class Main {
   public static void main(String[] args) {
     MySQLHandler.connect();
     getWord();
-
+    /* 
     LoginField loginfield = new LoginField();
     login.add(loginfield);
     login.setPreferredSize(new Dimension(300, 200));
@@ -40,7 +40,7 @@ class Main {
     register.setPreferredSize(new Dimension(300, 200));
     register.pack();
     register.setVisible(true);
-
+*/
     frame.setLayout(new GridBagLayout());
     GridBagConstraints constrains = new GridBagConstraints();
     constrains.fill = GridBagConstraints.BOTH;

@@ -3,12 +3,10 @@ package Components;
 import Interfaces.ButtonActions;
 import java.awt.FlowLayout;
 import java.awt.event.*;
-import javax.swing.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import org.w3c.dom.events.Event;
 
 public class GameEnd {
 
