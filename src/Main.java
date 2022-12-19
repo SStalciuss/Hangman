@@ -9,7 +9,6 @@ import javax.swing.*;
 class Main {
 
   static JFrame login = new JFrame("Login");
-  static JFrame register = new JFrame("Register");
   static JFrame frame = new JFrame("Hangman");
   static String wordToPrint = "";
   static String answer = "";
@@ -18,29 +17,14 @@ class Main {
   public static void main(String[] args) {
     MySQLHandler.connect();
     getWord();
-    /* 
+    RegisterField registerField = new RegisterField();
+
     LoginField loginfield = new LoginField();
     login.add(loginfield);
     login.setPreferredSize(new Dimension(300, 200));
     login.pack();
     login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    RegisterField registerfield = new RegisterField(
-      new ButtonActions<String>() {
-        public void onButtonClickHandler(String name) {
-          if (name == "Have an account?") {
-            login.setVisible(true);
-            register.setVisible(false);
-          }
-        }
-      }
-    );
-    register.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    register.add(registerfield);
-    register.setPreferredSize(new Dimension(300, 200));
-    register.pack();
-    register.setVisible(true);
-*/
     frame.setLayout(new GridBagLayout());
     GridBagConstraints constrains = new GridBagConstraints();
     constrains.fill = GridBagConstraints.BOTH;
