@@ -5,26 +5,30 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class LoginField extends JPanel {
+public class LoginField extends JFrame {
 
-  static JFrame Login = new JFrame("Login");
   private TextField username = new TextField(10);
   private TextField password = new TextField(10);
   private JButton login = new JButton("Login");
-  private JButton back = new JButton("Don't have an account?");
+  private JButton back = new JButton("Register?");
   private Label u = new Label("username:");
   private Label p = new Label("password:");
   private JPanel panel = new JPanel();
+  private static JFrame parent = null;
 
-  public LoginField() {
+  public LoginField(JFrame parentComp) {
+    parent = parentComp;
+    parent.setEnabled(false);
+    setTitle("Login");
+    setResizable(false);
     createLoginButton();
     createBackButton();
     addToPanel();
-    Login.add(panel);
-    Login.setSize(new Dimension(250, 160));
-    Login.setLocationRelativeTo(null);
-    Login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    Login.setVisible(true);
+    add(panel);
+    setSize(new Dimension(240, 160));
+    setLocationRelativeTo(null);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setVisible(true);
   }
 
   private void createLoginButton() {
@@ -35,8 +39,18 @@ public class LoginField extends JPanel {
         public void actionPerformed(ActionEvent e) {
           String usernameString = username.getText();
           String passwordString = password.getText();
+          if (!MySQLHandler.checkLogin(usernameString, passwordString)) {
+            JOptionPane.showMessageDialog(
+              null,
+              "Username or password is incorrect"
+            );
+            return;
+          }
+
           System.out.println("you are logged!");
-          Login.setVisible(false);
+          setVisible(false);
+          parent.setEnabled(true);
+          parent.toFront();
         }
       }
     );
@@ -48,41 +62,21 @@ public class LoginField extends JPanel {
     back.addActionListener(
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-          //          login.setVisible(true);
-          Login.setVisible(false);
-          RegisterField registerField = new RegisterField();
-          //  actions.onButtonClickHandler("Have an account?");
+          setVisible(false);
+          new RegisterField(parent);
         }
       }
     );
   }
 
   public void addToPanel() {
-    panel.setLayout(new FlowLayout());
-    GridBagConstraints constrains = new GridBagConstraints();
-    constrains.fill = GridBagConstraints.BOTH;
+    panel.add(u);
+    panel.add(username);
 
-    constrains.gridy = 0;
-    constrains.weightx = constrains.weighty = 0;
-    constrains.insets = new Insets(5, 40, 5, 0);
-    panel.add(u, constrains);
-    constrains.weightx = 20;
-    constrains.insets = new Insets(5, 0, 5, 20);
-    panel.add(username, constrains);
+    panel.add(p);
+    panel.add(password);
 
-    constrains.gridy = 1;
-    constrains.weightx = constrains.weighty = 0;
-    constrains.insets = new Insets(5, 40, 5, 0);
-    panel.add(p, constrains);
-    constrains.weightx = 20;
-    constrains.insets = new Insets(5, 0, 5, 20);
-    panel.add(password, constrains);
-
-    constrains.gridy = 2;
-    constrains.weightx = constrains.weighty = 0;
-    constrains.insets = new Insets(5, 10, 0, 10);
-    panel.add(login, constrains);
-    constrains.insets = new Insets(5, 20, 0, 20);
-    panel.add(back, constrains);
+    panel.add(login);
+    panel.add(back);
   }
 }

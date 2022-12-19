@@ -82,4 +82,31 @@ public class MySQLHandler {
       throw new IllegalStateException("Cant add user!", e);
     }
   }
+
+  public static Boolean checkIfUserExists(String name) {
+    try {
+      statement =
+        con.prepareStatement("SELECT name FROM Users WHERE name = (?)");
+      statement.setString(1, name);
+      res = statement.executeQuery();
+      return res.next();
+    } catch (Exception e) {
+      throw new IllegalStateException("Cant add user!", e);
+    }
+  }
+
+  public static Boolean checkLogin(String name, String password) {
+    try {
+      statement =
+        con.prepareStatement(
+          "SELECT name FROM Users WHERE name = (?) AND password =(?)"
+        );
+      statement.setString(1, name);
+      statement.setString(2, password);
+      res = statement.executeQuery();
+      return res.next();
+    } catch (Exception e) {
+      throw new IllegalStateException("Cant add user!", e);
+    }
+  }
 }

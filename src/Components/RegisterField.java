@@ -5,29 +5,32 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class RegisterField extends JPanel {
+public class RegisterField extends JFrame {
 
-  static JFrame Register = new JFrame("Register");
   private TextField username = new TextField(10);
   private TextField password = new TextField(10);
   private JButton register = new JButton("Register");
-  private JButton login = new JButton("Have an account?");
+  private JButton login = new JButton("Login");
   private JButton guest = new JButton("Play as a guest");
   private Label u = new Label("username:");
   private Label p = new Label("password:");
   private JPanel panel = new JPanel();
+  private static JFrame parent = null;
 
-  public RegisterField() {
+  public RegisterField(JFrame parentComp) {
+    parent = parentComp;
+    parent.setEnabled(false);
+    setResizable(false);
+    setTitle("Register");
     createRegisterButton();
     createLoginButton();
     createGuestButton();
     addToPanel();
-    Register.add(panel);
-    Register.setSize(new Dimension(250, 160));
-    Register.setLocationRelativeTo(null);
-    Register.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    Register.setVisible(true);
-    //setVisible(true);
+    add(panel);
+    setSize(new Dimension(240, 160));
+    setLocationRelativeTo(null);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setVisible(true);
   }
 
   private void createRegisterButton() {
@@ -38,9 +41,20 @@ public class RegisterField extends JPanel {
         public void actionPerformed(ActionEvent e) {
           String usernameString = username.getText();
           String passwordString = password.getText();
+          Boolean isTaken = MySQLHandler.checkIfUserExists(usernameString);
+          if (isTaken) {
+            JOptionPane.showMessageDialog(
+              null,
+              "User with this name already exists"
+            );
+            return;
+          }
+          System.out.println(isTaken);
           MySQLHandler.addUser(usernameString, passwordString);
           System.out.println("you are registered!");
-          Register.setVisible(false);
+          setVisible(false);
+          parent.setEnabled(true);
+          parent.toFront();
         }
       }
     );
@@ -52,8 +66,8 @@ public class RegisterField extends JPanel {
     login.addActionListener(
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-          Register.setVisible(false);
-          LoginField loginField = new LoginField();
+          setVisible(false);
+          new LoginField(parent);
         }
       }
     );
@@ -65,7 +79,9 @@ public class RegisterField extends JPanel {
     guest.addActionListener(
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-          Register.setVisible(false);
+          setVisible(false);
+          parent.setEnabled(true);
+          parent.toFront();
           System.out.println("Guest!");
         }
       }
@@ -73,33 +89,14 @@ public class RegisterField extends JPanel {
   }
 
   private void addToPanel() {
-    panel.setLayout(new FlowLayout());
-    GridBagConstraints constrains = new GridBagConstraints();
-    constrains.fill = GridBagConstraints.BOTH;
+    panel.add(u);
+    panel.add(username);
 
-    constrains.gridy = 0;
-    constrains.weightx = constrains.weighty = 0;
-    constrains.insets = new Insets(5, 40, 5, 0);
-    panel.add(u, constrains);
-    constrains.weightx = 50;
-    constrains.insets = new Insets(100, 0, 5, 20);
-    panel.add(username, constrains);
+    panel.add(p);
+    panel.add(password);
 
-    constrains.gridy = 1;
-    constrains.weightx = constrains.weighty = 0;
-    constrains.insets = new Insets(5, 40, 5, 0);
-    panel.add(p, constrains);
-    constrains.weightx = 20;
-    constrains.insets = new Insets(5, 0, 5, 20);
-    panel.add(password, constrains);
-
-    constrains.gridy = 2;
-    constrains.weightx = constrains.weighty = 0;
-    constrains.insets = new Insets(5, 10, 0, 10);
-    panel.add(login, constrains);
-    constrains.insets = new Insets(5, 20, 0, 20);
-    panel.add(register, constrains);
-    constrains.insets = new Insets(5, 30, 0, 30);
-    panel.add(guest, constrains);
+    panel.add(login);
+    panel.add(register);
+    panel.add(guest);
   }
 }

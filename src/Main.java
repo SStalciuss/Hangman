@@ -8,7 +8,6 @@ import javax.swing.*;
 
 class Main {
 
-  static JFrame login = new JFrame("Login");
   static JFrame frame = new JFrame("Hangman");
   static String wordToPrint = "";
   static String answer = "";
@@ -64,7 +63,7 @@ class Main {
 
     //5. Show it.
     frame.setVisible(true);
-    RegisterField registerField = new RegisterField();
+    new RegisterField(frame);
   }
 
   private static int getRandomNumber(int min, int max) {
