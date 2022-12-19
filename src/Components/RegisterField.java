@@ -14,21 +14,17 @@ public class RegisterField extends JFrame {
   private JButton guest = new JButton("Play as a guest");
   private Label u = new Label("username:");
   private Label p = new Label("password:");
-  private JPanel panel = new JPanel();
   private static JFrame parent = null;
 
   public RegisterField(JFrame parentComp) {
     parent = parentComp;
     parent.setEnabled(false);
+    setLayout(new FlowLayout());
     setResizable(false);
     setTitle("Register");
-    createRegisterButton();
-    createLoginButton();
-    createGuestButton();
-    addToPanel();
-    add(panel);
+    addElementsToPanel();
     setSize(new Dimension(240, 160));
-    setLocationRelativeTo(null);
+    setLocationRelativeTo(parent);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
   }
@@ -41,15 +37,13 @@ public class RegisterField extends JFrame {
         public void actionPerformed(ActionEvent e) {
           String usernameString = username.getText();
           String passwordString = password.getText();
-          Boolean isTaken = MySQLHandler.checkIfUserExists(usernameString);
-          if (isTaken) {
+          if (MySQLHandler.checkIfUserExists(usernameString)) {
             JOptionPane.showMessageDialog(
               null,
               "User with this name already exists"
             );
             return;
           }
-          System.out.println(isTaken);
           MySQLHandler.addUser(usernameString, passwordString);
           System.out.println("you are registered!");
           setVisible(false);
@@ -88,15 +82,19 @@ public class RegisterField extends JFrame {
     );
   }
 
-  private void addToPanel() {
-    panel.add(u);
-    panel.add(username);
+  private void addElementsToPanel() {
+    createRegisterButton();
+    createLoginButton();
+    createGuestButton();
 
-    panel.add(p);
-    panel.add(password);
+    add(u);
+    add(username);
 
-    panel.add(login);
-    panel.add(register);
-    panel.add(guest);
+    add(p);
+    add(password);
+
+    add(login);
+    add(register);
+    add(guest);
   }
 }

@@ -10,23 +10,20 @@ public class LoginField extends JFrame {
   private TextField username = new TextField(10);
   private TextField password = new TextField(10);
   private JButton login = new JButton("Login");
-  private JButton back = new JButton("Register?");
+  private JButton back = new JButton("Register");
   private Label u = new Label("username:");
   private Label p = new Label("password:");
-  private JPanel panel = new JPanel();
   private static JFrame parent = null;
 
   public LoginField(JFrame parentComp) {
     parent = parentComp;
     parent.setEnabled(false);
+    setLayout(new FlowLayout());
     setTitle("Login");
     setResizable(false);
-    createLoginButton();
-    createBackButton();
-    addToPanel();
-    add(panel);
+    addElementsToPanel();
     setSize(new Dimension(240, 160));
-    setLocationRelativeTo(null);
+    setLocationRelativeTo(parent);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
   }
@@ -69,14 +66,17 @@ public class LoginField extends JFrame {
     );
   }
 
-  public void addToPanel() {
-    panel.add(u);
-    panel.add(username);
+  private void addElementsToPanel() {
+    createLoginButton();
+    createBackButton();
 
-    panel.add(p);
-    panel.add(password);
+    add(u);
+    add(username);
 
-    panel.add(login);
-    panel.add(back);
+    add(p);
+    add(password);
+
+    add(login);
+    add(back);
   }
 }
