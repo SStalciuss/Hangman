@@ -26,7 +26,6 @@ public class RegisterField extends JPanel {
     Register.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     Register.setVisible(true);
     //setVisible(true);
-    System.out.println("RegisterField");
   }
 
   private void createRegisterButton() {
@@ -38,6 +37,7 @@ public class RegisterField extends JPanel {
           String usernameString = username.getText();
           String passwordString = password.getText();
           MySQLHandler.addUser(usernameString, passwordString);
+          System.out.println("you are registered!");
           Register.setVisible(false);
         }
       }
@@ -52,6 +52,7 @@ public class RegisterField extends JPanel {
         public void actionPerformed(ActionEvent e) {
           //          login.setVisible(true);
           Register.setVisible(false);
+          LoginField loginField = new LoginField();
           //  actions.onButtonClickHandler("Have an account?");
         }
       }
