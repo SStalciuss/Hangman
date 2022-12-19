@@ -12,6 +12,7 @@ public class RegisterField extends JPanel {
   private TextField password = new TextField(10);
   private JButton register = new JButton("Register");
   private JButton login = new JButton("Have an account?");
+  private JButton guest = new JButton("Play as a guest");
   private Label u = new Label("username:");
   private Label p = new Label("password:");
   private JPanel panel = new JPanel();
@@ -19,9 +20,10 @@ public class RegisterField extends JPanel {
   public RegisterField() {
     createRegisterButton();
     createLoginButton();
+    createGuestButton();
     addToPanel();
     Register.add(panel);
-    Register.setSize(new Dimension(250, 150));
+    Register.setSize(new Dimension(250, 160));
     Register.setLocationRelativeTo(null);
     Register.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     Register.setVisible(true);
@@ -50,10 +52,21 @@ public class RegisterField extends JPanel {
     login.addActionListener(
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-          //          login.setVisible(true);
           Register.setVisible(false);
           LoginField loginField = new LoginField();
-          //  actions.onButtonClickHandler("Have an account?");
+        }
+      }
+    );
+  }
+
+  private void createGuestButton() {
+    guest.setFont(new Font("Sans Serif", Font.BOLD, 14));
+    guest.setMargin(new Insets(0, 0, 0, 0));
+    guest.addActionListener(
+      new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          Register.setVisible(false);
+          System.out.println("Guest!");
         }
       }
     );
@@ -86,5 +99,7 @@ public class RegisterField extends JPanel {
     panel.add(login, constrains);
     constrains.insets = new Insets(5, 20, 0, 20);
     panel.add(register, constrains);
+    constrains.insets = new Insets(5, 30, 0, 30);
+    panel.add(guest, constrains);
   }
 }

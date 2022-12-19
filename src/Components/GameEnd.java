@@ -12,14 +12,16 @@ public class GameEnd {
 
   public static void create(
     int counter,
-    ButtonActions<ActionEvent> endActions
+    ButtonActions<ActionEvent> endActions,
+    String answer
   ) {
     JFrame gameEnd = new JFrame("Game end");
     JPanel panel = new JPanel();
     panel.setLayout(new FlowLayout());
-    JLabel label = new JLabel("Game over");
-    JLabel label1 = new JLabel("you won!");
-    JLabel label2 = new JLabel("you lost!");
+    JLabel label = new JLabel("Game over!");
+    JLabel label1 = new JLabel("You won!");
+    JLabel label2 = new JLabel("You lost!");
+    JLabel label3 = new JLabel("The word was " + answer);
     JButton buttonRestart = new JButton("Restart");
     JButton buttonExit = new JButton("Exit");
     buttonRestart.addActionListener(
@@ -39,10 +41,11 @@ public class GameEnd {
     );
     panel.add(label);
     if (counter >= 10) panel.add(label2); else panel.add(label1);
+    panel.add(label3);
     panel.add(buttonRestart);
     panel.add(buttonExit);
     gameEnd.add(panel);
-    gameEnd.setSize(200, 100);
+    gameEnd.setSize(200, 120);
     gameEnd.setLocationRelativeTo(null);
     gameEnd.dispatchEvent(new WindowEvent(gameEnd, WindowEvent.WINDOW_CLOSING));
     gameEnd.setVisible(true);

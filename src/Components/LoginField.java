@@ -11,7 +11,7 @@ public class LoginField extends JPanel {
   private TextField username = new TextField(10);
   private TextField password = new TextField(10);
   private JButton login = new JButton("Login");
-  private JButton back = new JButton("Don't have a account?");
+  private JButton back = new JButton("Don't have an account?");
   private Label u = new Label("username:");
   private Label p = new Label("password:");
   private JPanel panel = new JPanel();
@@ -21,7 +21,7 @@ public class LoginField extends JPanel {
     createBackButton();
     addToPanel();
     Login.add(panel);
-    Login.setSize(new Dimension(250, 150));
+    Login.setSize(new Dimension(250, 160));
     Login.setLocationRelativeTo(null);
     Login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     Login.setVisible(true);

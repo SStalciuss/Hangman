@@ -17,17 +17,6 @@ class Main {
   public static void main(String[] args) {
     MySQLHandler.connect();
     getWord();
-    RegisterField registerField = new RegisterField();
-
-    LoginField loginfield = new LoginField();
-    login.add(loginfield);
-    login.setPreferredSize(new Dimension(300, 200));
-    login.pack();
-    login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-    frame.setLayout(new GridBagLayout());
-    GridBagConstraints constrains = new GridBagConstraints();
-    constrains.fill = GridBagConstraints.BOTH;
 
     DrawField drawfield = new DrawField();
     WordLine wordLine = new WordLine(wordToPrint);
@@ -43,11 +32,12 @@ class Main {
           }
 
           if (failCounter >= 10) {
-            GameEnd.create(failCounter, getResetActions());
+            GameEnd.create(failCounter, getResetActions(), answer);
             frame.setEnabled(false);
           } else if (Validator.playerWon(wordToPrint)) GameEnd.create(
             failCounter,
-            getResetActions()
+            getResetActions(),
+            answer
           );
         }
       }
@@ -74,6 +64,7 @@ class Main {
 
     //5. Show it.
     frame.setVisible(true);
+    RegisterField registerField = new RegisterField();
   }
 
   private static int getRandomNumber(int min, int max) {
