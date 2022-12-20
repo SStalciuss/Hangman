@@ -12,6 +12,7 @@ class Main {
   static String wordToPrint = "";
   static String answer = "";
   static int failCounter = 0;
+  static int clickCounter = 0;
 
   public static void main(String[] args) {
     MySQLHandler.connect();
@@ -19,9 +20,12 @@ class Main {
 
     DrawField drawfield = new DrawField();
     WordLine wordLine = new WordLine(wordToPrint);
+    TimerField timerfield = new TimerField();
     Keyboard keyboard = new Keyboard(
       new ButtonActions<Character>() {
         public void onButtonClickHandler(Character letter) {
+          clickCounter++;
+          if(clickCounter==1)timerfield.startTimer();
           if (Validator.validLetter(letter, answer)) {
             wordToPrint = Validator.getWordToPrint(letter, wordToPrint, answer);
             wordLine.update(wordToPrint);
@@ -46,14 +50,18 @@ class Main {
     constraints.fill = GridBagConstraints.BOTH;
 
     constraints.gridy = 0;
-    constraints.weightx = constraints.weighty = 0.6;
-    frame.add(drawfield, constraints);
+    constraints.weightx = constraints.weighty = 0.1;
+    frame.add(timerfield, constraints);
 
     constraints.gridy = 1;
+    constraints.weightx = constraints.weighty = 0.5;
+    frame.add(drawfield, constraints);
+
+    constraints.gridy = 2;
     constraints.weightx = constraints.weighty = 0.1;
     frame.add(wordLine, constraints);
 
-    constraints.gridy = 2;
+    constraints.gridy = 3;
     constraints.weightx = constraints.weighty = 0.3;
     frame.add(keyboard, constraints);
 
@@ -63,7 +71,7 @@ class Main {
 
     //5. Show it.
     frame.setVisible(true);
-    new RegisterField(frame);
+    //new RegisterField(frame);
   }
 
   private static int getRandomNumber(int min, int max) {
