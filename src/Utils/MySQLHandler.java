@@ -1,5 +1,6 @@
 package Utils;
 
+import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -115,6 +116,20 @@ public class MySQLHandler {
       res = statement.executeQuery();
       res.next();
       return res.getString(1);
+    } catch (Exception e) {
+      throw new IllegalStateException("Cant add user!", e);
+    }
+  }
+  public static ArrayList<String> getLeaders() {
+    try {
+      statement = 
+        con.prepareStatement("SELECT score FROM Scores ORDER BY score DESC limit 10");
+      res = statement.executeQuery();
+      ArrayList<String> leaders = new ArrayList<String>();
+      while(res.next()){
+        leaders.add(res.getString("score"));
+      }
+      return leaders;
     } catch (Exception e) {
       throw new IllegalStateException("Cant add user!", e);
     }

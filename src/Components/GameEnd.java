@@ -1,6 +1,7 @@
 package Components;
 
 import Interfaces.ButtonActions;
+import Components.ScoreBoard;
 import java.awt.FlowLayout;
 import java.awt.event.*;
 import javax.swing.JButton;
@@ -27,6 +28,16 @@ public class GameEnd {
     JLabel label5 = new JLabel("You got 0 points!  ");
     JButton buttonRestart = new JButton("Restart");
     JButton buttonExit = new JButton("Exit");
+    JButton buttonScoreboard = new JButton ("Show Scoreboard");
+
+    buttonScoreboard.addActionListener(
+      new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          new ScoreBoard(gameEnd);
+        }
+      }
+    );
+
     buttonRestart.addActionListener(
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
@@ -48,8 +59,9 @@ public class GameEnd {
     if (counter >= 10) panel.add(label5); else panel.add(label4);
     panel.add(buttonRestart);
     panel.add(buttonExit);
+    panel.add(buttonScoreboard);
     gameEnd.add(panel);
-    gameEnd.setSize(200, 140);
+    gameEnd.setSize(200, 170);
     gameEnd.setLocationRelativeTo(null);
     gameEnd.dispatchEvent(new WindowEvent(gameEnd, WindowEvent.WINDOW_CLOSING));
     gameEnd.setVisible(true);
