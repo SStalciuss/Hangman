@@ -22,7 +22,7 @@ public class RegisterField extends JFrame {
     setResizable(false);
     setTitle("Register");
     addElementsToPanel();
-    setSize(new Dimension(240, 160));
+    setSize(new Dimension(200, 160));
     setLocationRelativeTo(parent);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);

@@ -22,7 +22,7 @@ public class LoginField extends JFrame {
     setTitle("Login");
     setResizable(false);
     addElementsToPanel();
-    setSize(new Dimension(240, 160));
+    setSize(new Dimension(200, 160));
     setLocationRelativeTo(parent);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
