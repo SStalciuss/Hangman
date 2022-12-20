@@ -18,7 +18,6 @@ public class RegisterField extends JFrame {
 
   public RegisterField(JFrame parentComp) {
     parent = parentComp;
-    parent.setEnabled(false);
     setLayout(new FlowLayout());
     setResizable(false);
     setTitle("Register");
@@ -49,6 +48,7 @@ public class RegisterField extends JFrame {
           setVisible(false);
           parent.setEnabled(true);
           parent.toFront();
+          parent.setVisible(true);
         }
       }
     );
@@ -77,6 +77,11 @@ public class RegisterField extends JFrame {
           parent.setEnabled(true);
           parent.toFront();
           System.out.println("Guest!");
+          setVisible(false);
+          parent.setEnabled(true);
+          parent.toFront();
+          parent.setVisible(true);
+          parent.repaint();
         }
       }
     );

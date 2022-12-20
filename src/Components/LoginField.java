@@ -48,6 +48,8 @@ public class LoginField extends JFrame {
           setVisible(false);
           parent.setEnabled(true);
           parent.toFront();
+          parent.setVisible(true);
+          parent.repaint();
         }
       }
     );

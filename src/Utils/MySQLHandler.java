@@ -71,9 +71,46 @@ public class MySQLHandler {
     }
   }
 
+  public static int getRowsCount2() {
+    try {
+      statement = con.prepareStatement("SELECT COUNT(*) FROM ThemeWords");
+      res = statement.executeQuery();
+      res.next();
+      return res.getInt(1);
+    } catch (Exception e) {
+      throw new IllegalStateException("Cant add user!", e);
+    }
+  }
+
   public static String getWord(int id) {
     try {
       statement = con.prepareStatement("SELECT word FROM Words WHERE id = (?)");
+      statement.setInt(1, id);
+      res = statement.executeQuery();
+      res.next();
+      return res.getString(1);
+    } catch (Exception e) {
+      throw new IllegalStateException("Cant add user!", e);
+    }
+  }
+
+  public static String getThemeWord(int id) {
+    try {
+      statement =
+        con.prepareStatement("SELECT word FROM ThemeWords WHERE id = (?)");
+      statement.setInt(1, id);
+      res = statement.executeQuery();
+      res.next();
+      return res.getString(1);
+    } catch (Exception e) {
+      throw new IllegalStateException("Cant add user!", e);
+    }
+  }
+
+  public static String getTheme(int id) {
+    try {
+      statement =
+        con.prepareStatement("SELECT theme FROM ThemeWords WHERE id = (?)");
       statement.setInt(1, id);
       res = statement.executeQuery();
       res.next();
