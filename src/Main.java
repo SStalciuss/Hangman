@@ -89,7 +89,7 @@ class Main {
 
     //5. Show it.
     frame.setVisible(true);
-    //new RegisterField(frame);
+    new RegisterField(frame);
   }
 
   private static int getRandomNumber(int min, int max) {
