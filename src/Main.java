@@ -13,6 +13,9 @@ class Main {
   static String answer = "";
   static int failCounter = 0;
   static int clickCounter = 0;
+  static int score = 0;
+  static int guessTime;
+  static int timeAtLastGuess = 0;
 
   public static void main(String[] args) {
     MySQLHandler.connect();
@@ -25,8 +28,17 @@ class Main {
       new ButtonActions<Character>() {
         public void onButtonClickHandler(Character letter) {
           clickCounter++;
+
           if(clickCounter==1)timerfield.startTimer();
           if (Validator.validLetter(letter, answer)) {
+            guessTime = timerfield.getTotalSeconds() - timeAtLastGuess;
+            timeAtLastGuess = timerfield.getTotalSeconds();
+
+            if(guessTime<=5)score+=5; else
+            if(guessTime<=10)score+=4; else
+            if(guessTime<=15)score+=3; else
+            if(guessTime<=20)score+=2; else score+=1; 
+
             wordToPrint = Validator.getWordToPrint(letter, wordToPrint, answer);
             wordLine.update(wordToPrint);
           } else {
@@ -35,13 +47,19 @@ class Main {
           }
 
           if (failCounter >= 10) {
-            GameEnd.create(failCounter, getResetActions(), answer);
+            GameEnd.create(failCounter, getResetActions(), answer, Integer.toString(score));
             frame.setEnabled(false);
-          } else if (Validator.playerWon(wordToPrint)) GameEnd.create(
-            failCounter,
-            getResetActions(),
-            answer
-          );
+            timerfield.stopTimer();
+          } else if (Validator.playerWon(wordToPrint)){
+            GameEnd.create(
+              failCounter,
+              getResetActions(),
+              answer,
+              Integer.toString(score)
+            );
+            timerfield.stopTimer();
+            MySQLHandler.addScore(Integer.toString(score));
+          } 
         }
       }
     );
@@ -86,6 +104,9 @@ class Main {
         frame.repaint();
         frame.setEnabled(true);
         failCounter = 0;
+        clickCounter = 0;
+        score = 0;
+        timeAtLastGuess = 0;
         main(new String[1]);
       }
     };

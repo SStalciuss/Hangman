@@ -8,6 +8,7 @@ import javax.swing.*;
 public class TimerField extends JPanel implements ActionListener {
     private int minutes;
     private int seconds;
+    private int totalseconds;
     private Label label = new Label("");
     private Label text = new Label("Time since start:");
 
@@ -41,11 +42,18 @@ public class TimerField extends JPanel implements ActionListener {
     public void startTimer(){
         timer.start();
     }
+    public void stopTimer(){
+        timer.stop();
+    }
     public void setStartTime() {
+        totalseconds = 0;
         minutes = 0;
         seconds = 0;
         label.setText("0" + Integer.toString(minutes) + ":"
                 + "0" + Integer.toString(seconds));
+    }
+    public int getTotalSeconds(){
+        return totalseconds;
     }
     public int getMinutes(){
         return minutes;
@@ -55,6 +63,7 @@ public class TimerField extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+        totalseconds++;
         seconds++;
         if (seconds == 60) {
             seconds = 0;
