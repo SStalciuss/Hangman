@@ -1,7 +1,6 @@
 package Components;
 
 import Interfaces.ButtonActions;
-import Components.ScoreBoard;
 import java.awt.FlowLayout;
 import java.awt.event.*;
 import javax.swing.JButton;
